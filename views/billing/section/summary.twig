@@ -1,0 +1,14 @@
+<table class="table">
+    <tr>
+        <td class='text-right font-weight-bold'>Sub Total</td>
+        <td>{{ mycart.subTotal | number_format(2) }}</td>
+    </tr>
+    <tr>
+        <td class='text-right'>VAT</td>
+        <td>16%</td>
+    </tr>
+    <tr>
+        <td class='text-right'><strong>TOTAL</strong></td>
+        <td>{{ (mycart.subTotal * 1.16) | number_format(2) }}</td>
+    </tr>
+</table>

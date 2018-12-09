@@ -1,0 +1,55 @@
+{% extends "template/app.twig" %}
+
+{% block body %}
+    {% if mycart.itemCount %}
+        
+<div class="row">
+        <div class="col-md-8">
+            <div class="well">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in mycart.all() %}
+                            <tr>
+                                <td><a href="{{ path_for('product.get', {id:row.id}) }}">{{ row.title }}</a></td>
+                                <td>KES.{{ row.price | number_format(2) }}</td>
+                                <td>
+                                    <form action=" {{ path_for('charge.update', {id:row.id}) }} " method="POST" class="form-inline">
+                                        <select name="qty" class="form-control">
+                                            <option value="0">Drop Item</option>
+                                            {% for num in 1..row.stock %}
+
+                                            <option {% if num == row.qty %}selected="selected"{% endif %} value="{{num}}">{{num}}</option>
+                                            
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-default">Update</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            {% if mycart.itemCount and mycart.subTotal %}
+                {% include "billing/section/summary.twig" %}
+                <a href="{{ path_for('orders') }}" class="btn btn-success">Charge & Save</a>
+            {% endif %}
+        </div>
+    
+    </div>
+    {% else %}
+        <div class="alert alert-success">
+            There are no items in your cart
+            <a href="{{ path_for('home') }}" class="btn btn-primary">Add Products & Services</a>
+        </div>
+    {% endif %}
+{% endblock %}

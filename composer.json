@@ -1,0 +1,17 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/twig-view": "^2.4",
+        "illuminate/database": "^5.7",
+        "php-di/slim-bridge": "1.0.2",
+        "lovecoding/twig-asset": "^1.0",
+        "symfony/http-foundation": "^4.2",
+        "symfony/asset": "^4.2",
+        "respect/validation": "^1.1"
+    },
+	"autoload":{
+		"psr-4":{
+			"Fin\\":"app"
+		}
+	}
+}

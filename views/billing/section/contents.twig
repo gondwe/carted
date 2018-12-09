@@ -1,0 +1,11 @@
+<table class="table-compact w-100">
+    {% for row in mycart.all %}
+    
+    <tr>
+        <td >{{row.title}}</td>
+        <td >Qty {{row.qty}}</td>
+       
+    </tr>
+        
+    {% endfor %}
+</table>
